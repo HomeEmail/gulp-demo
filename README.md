@@ -7,6 +7,7 @@
 ```
 npm install
 ```
+
 安装package.json里的依赖包
 
 
@@ -22,7 +23,6 @@ npm install
 >> --src_js //js代码原文件
 
 >> --temp  //存放构建过程中生成的临时文件
-
 
 >  --node_modules //构建环境依赖的包
 
