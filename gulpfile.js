@@ -13,11 +13,11 @@ var fs= require('fs');
 var runSequence=require('run-sequence');//按指定顺序运行任务
 
 var res = {
-	lessFiles : ['res/less/*.*']
-	,jsFiles : ['res/src_js/*.js']
-	,jsLib : ['res/src_js/lib/*.js']
-	,jsOwn : ['res/src_js/main.js','res/src_js/about.js'] //合并js文件时按此数组顺序
-	,imgFiles : ['res/images/*.*']
+	lessFiles : ['res/less/**.*']
+	,jsFiles : ['res/js/**.js']
+	,jsLib : ['res/js/lib/**.js']
+	,jsOwn : ['res/js/main.js','res/js/about.js'] //合并js文件时按此数组顺序
+	,imgFiles : ['res/images/**.*']
 };
 
 //对于img,生成rev-manifest.json文件
@@ -41,13 +41,13 @@ gulp.task('css-task',function(){
 });
 //将图片md5应用于css 图片路径里
 gulp.task('rev-img',function(){
-	gulp.src(['res/temp/rev-img/*.json','./res/temp/rev-less/*.css'])
+	gulp.src(['res/temp/rev-img/*.json','./res/temp/rev-less/**.css'])
 		.pipe(revCollector())
-		.pipe(gulp.dest('./dest/res/css/'))
+		.pipe(gulp.dest('./dest/res/css'))
 		;
 });
 gulp.task('rev-css-manifest',function(){
-	gulp.src(['./dest/res/css/*.css'])
+	gulp.src(['./dest/res/css/**.css'])
 		.pipe(rev())//文件名加md5后缀
 		.pipe(rev.manifest())//生成一个rev-manifest.json
 		.pipe(gulp.dest('./res/temp/rev-css'));//- 将 rev-manifest.json 保存到 rev-css 目录
@@ -58,7 +58,7 @@ gulp.task('rev-css-manifest',function(){
 gulp.task('rev-css',function(){
 	gulp.src(['res/temp/rev-css/*.json','./*.html'])
 		.pipe(revCollector())
-		.pipe(gulp.dest('./res/temp/css-html/'))
+		.pipe(gulp.dest('./res/temp/css-html'))
 		;
 });
 
@@ -68,7 +68,8 @@ gulp.task('lint',function(){
 	return gulp.src(res.jsOwn)
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
-		.pipe(notify({message:'lint task ok'}));
+		//.pipe(notify({message:'lint task ok'}))
+		;
 });
 //压缩js库
 gulp.task('js-lib',function(){
@@ -79,13 +80,14 @@ gulp.task('js-lib',function(){
 		.pipe(rev())
 		.pipe(rev.manifest())
 		.pipe(gulp.dest('./res/temp/rev-js-lib'))
-		.pipe(notify({message:'js-lib task ok'}));
+		//.pipe(notify({message:'js-lib task ok'}))
+		;
 });
 //讲js lib文件md5应用于html的js路径里
 gulp.task('res-js-lib',function(){
 	gulp.src(['res/temp/rev-js-lib/*.json','./res/temp/css-html/*.html'])
 	.pipe(revCollector())
-	.pipe(gulp.dest('./res/temp/js-lib-html/'))
+	.pipe(gulp.dest('./res/temp/js-lib-html'))
 
 })
 //合并压缩项目的js
@@ -99,7 +101,8 @@ gulp.task('js-own',function(){
 		.pipe(rev())
 		.pipe(rev.manifest())
 		.pipe(gulp.dest('./res/temp/rev-js-own'))
-		.pipe(notify({message:'js-own task ok'}));
+		//.pipe(notify({message:'js-own task ok'}))
+		;
 
 });
 
@@ -107,7 +110,7 @@ gulp.task('js-own',function(){
 gulp.task('res-js-own',function(){
 	gulp.src(['res/temp/rev-js-own/*.json','./res/temp/js-lib-html/*.html'])
 	.pipe(revCollector())
-	.pipe(gulp.dest('./dest/'))
+	.pipe(gulp.dest('./dest'))
 
 })
 
