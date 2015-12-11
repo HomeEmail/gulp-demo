@@ -30,7 +30,7 @@ npm install
 
 >> --less  //css或less
 
->> --src_js //js代码原文件
+>> --js //js代码原文件
 
 >> --temp  //存放构建过程中生成的临时文件
 
