@@ -1,5 +1,15 @@
 # 使用gulp构建前端开发环境demo
 
+此构建环境包括如下功能：
+
+* 解析less，组合压缩css
+* 组合压缩js
+* js检查
+* css里图片md5方式的版本管理
+* html里图片、css和js文件引用的md5方式管理
+
+
+
 ### 安装
 首先要装好nodejs，npm，gulp
 打开终端输入
