@@ -17,7 +17,7 @@ var res = {
 	,jsFiles : ['res/js/**.js']
 	,jsLib : ['res/js/lib/**.js']
 	,jsOwn : ['res/js/main.js','res/js/about.js'] //合并js文件时按此数组顺序
-	,imgFiles : ['res/images/**.*']
+	,imgFiles : ['res/images/**.*','res/images/*/*.*']
 };
 
 //对于img,生成rev-manifest.json文件
