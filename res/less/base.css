@@ -254,7 +254,7 @@ html {
 
 a,
 a:visited {
-    color: #fff
+    color: #000
 }
 
 a:active {
@@ -267,7 +267,7 @@ body {
     width: auto;
     background-color: #000;
     overflow: auto;
-    color: #fff
+    color: #000
 }
 
 .cl-99 {
